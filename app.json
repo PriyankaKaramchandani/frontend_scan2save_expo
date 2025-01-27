@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "frontend_scan2save_expo",
+    "slug": "frontend_scan2save_expo",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/logo.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "logo": "./assets/logo.png"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/logo.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "logo": "./assets/logo.png"
+    },
+    "plugins": [
+      "expo-router"
+    ]
+  }
+}
