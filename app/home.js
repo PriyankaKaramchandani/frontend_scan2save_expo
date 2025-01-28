@@ -1,12 +1,12 @@
 import { registerRootComponent } from 'expo';
 import React from 'react';
-import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, Image, StyleSheet, TouchableOpacity, Text, Platform } from 'react-native';
 
-const home = ({ navigation }) => {
+const Home = ({ navigation }) => {
     return (
     <View style={styles.container}>
         <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('login') }>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login') }>
             <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => { /* Handle sign up */ }}>
@@ -14,13 +14,13 @@ const home = ({ navigation }) => {
         </TouchableOpacity>
         </View>
         <View>
-            <Image source={require('../assets/logo.png')} style={styles.logo} />
+            <Image source={require('../assets/logo.png')} style={styles.logo} resizeMode="contain" />
         </View>
     </View>
     );
 };
 
-export default home;
+export default Home;
 
 const styles = StyleSheet.create({
     container: {
@@ -29,27 +29,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#EF476F',
     },
-    // logoContainer: {
-    //     width: 300,
-    //     height: 400,
-    //     margin: 20,
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    //     shadowColor: '#000', // Shadow color
-    //     // shadowOffset: { width: 0, height: 2 }, // Shadow offset
-    //     shadowOpacity: 0.8, // Shadow opacity
-    //     shadowRadius: 3, // Shadow radius
-    //     // elevation: 5, // For Android shadow
-    // },
     logo: {
         width: 300,
         height: 400,
-        resizeMode: 'contain',
-        shadowColor: '#000', // Shadow color
-        shadowOffset: { width: 0, height: 2 }, // Shadow offset
-        shadowOpacity: 0.8, // Shadow opacity
-        shadowRadius: 3, // Shadow radius
-        elevation: 5, // For Android shadow
+        // resizeMode: 'contain',
+        ...Platform.select({
+            ios: {
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.8,
+                shadowRadius: 3,
+            },
+            android: {
+                elevation: 5,
+            },
+        }),
     },
     buttonsContainer: {
         position: 'absolute',
@@ -66,14 +60,20 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
         borderWidth: 1,
         borderColor: '#000000',
-        shadowColor: '#000', 
-        shadowOffset: { width: 0, height: 2 }, 
-        shadowOpacity: 0.8, 
-        shadowRadius: 3, 
-        elevation: 5, 
+        ...Platform.select({
+            ios: {
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.8,
+                shadowRadius: 3,
+            },
+            android: {
+                elevation: 5,
+            },
+        }),
     },
     buttonText: {
-        color: '#000000', // Set text color to black
+        color: '#000000', 
         fontWeight: 'bold',
     },
 });
